@@ -12,5 +12,6 @@ export class Glass {
     @Input() percentLemonJuice: number = 0;
     @Input() percentSugar: number = 0;
     @Input() numberOfIceCubes: number = 0;
+    @Input() classNames: string = '';
 
 }

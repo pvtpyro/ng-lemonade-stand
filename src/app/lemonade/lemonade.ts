@@ -3,6 +3,7 @@ import { Card } from "./card/card";
 import { Product } from './product/product';
 import { CommonModule } from '@angular/common';
 import { Glass } from "./glass/glass";
+import { Cart } from "../cart/cart";
 
 interface IProduct {
     name: string,
@@ -14,7 +15,7 @@ interface IProduct {
 
 @Component({
     selector: 'app-lemonade',
-    imports: [Card, Product, CommonModule, Glass],
+    imports: [Card, Product, CommonModule, Glass, Cart],
     templateUrl: './lemonade.html',
     styleUrl: './lemonade.scss'
 })

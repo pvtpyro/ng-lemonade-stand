@@ -15,11 +15,21 @@
     background: rgba(179, 171, 171, 0.5);
     position: relative;
     overflow: hidden;
+
+    &.small {
+        height: 165px;
+        width: 100px;
+    }
 }
+
 
 .background {
     height: 502px;
     width: 315px;
     background: white;
     margin: 15px;
+    &.small {
+        height: 175px;
+        width: 115px;
+    }
 }
