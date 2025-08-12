@@ -1,10 +1,15 @@
 <div class="lemonade">
-    <app-glass [classNames]="'small'"></app-glass>
+    <!-- WHY would we suddenly stop using the max value we set and used elseware?? -->
+    <app-glass [classNames]="'small'"
+     [percentLemonJuice]="100 - (lemonade.lemonJuice / 10) * 100"
+        [percentSugar]="100 - (lemonade.sugar / 8) * 30"
+        [numberOfIceCubes]="lemonade.iceCubes"
+        ></app-glass>
     <div class="lemonade-text">
-        <span>Lemon Juice: 7oz</span>
-        <span>Sugar: 2 tsp</span>
-        <span>Ice: 3 cubes</span>
-        <span>Price: $0</span>
+        <span>Lemon Juice: {{lemonade.lemonJuice}}</span>
+        <span>Sugar: {{lemonade.sugar}}</span>
+        <span>Ice: {{lemonade.iceCubes}}</span>
+        <span>Price: {{lemonade.price | currency}}</span>
     </div>
     <button class="remove">remove</button>
 </div>

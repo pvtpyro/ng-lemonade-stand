@@ -2,7 +2,7 @@
     <h1 class="blue">Your Order</h1>
     <div class="order-container eighty-percent">
         <div class="order-box">
-            <app-item></app-item>
+            <app-item *ngFor="let lemonade of lemonades" [lemonade]="lemonade"></app-item>
         </div>
         <h2 class="blue">Total Price: $0</h2>
     </div>
