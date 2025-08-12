@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { globalModules } from '../global-modules';
 import { InputComponent } from "./input/input";
+import { PhoneFormControl } from './phone-form-control';
 
 interface LemonadeStand {
     id: number,
@@ -26,7 +27,7 @@ export class CustomerForm {
 
     customerForm: FormGroup = new FormGroup({
         name: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
-        phoneNumber: new FormControl<string>('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+        phoneNumber: new PhoneFormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]),
         selectedStand: new FormControl<LemonadeStand | undefined>(undefined, [Validators.required])
     })
 
