@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from "./item/item";
 import { CommonModule } from '@angular/common';
 
 
 interface ILemonade {
+    id: number,
     lemonJuice: number,
     sugar: number,
     iceCubes: number,
@@ -22,7 +23,15 @@ export class Cart {
 
     @Input() lemonades: ILemonade[] = [];
 
+    @Output() secondPassLemonadeIdEvent = new EventEmitter<number>();
+
     totalPrice: number = 0;
+
+    receiveLemonadeId(id:number) {
+        this.secondPassLemonadeIdEvent.emit(id);
+    }
+
+
 
     ngOnInit(): void {
         this.lemonades.forEach(

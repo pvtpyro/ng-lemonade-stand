@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Glass } from "../../lemonade/glass/glass";
 import { CommonModule } from '@angular/common';
 
@@ -11,5 +11,11 @@ import { CommonModule } from '@angular/common';
 export class Item {
 
     @Input() lemonade: any;
+
+    @Output() passLemonadeEvent = new EventEmitter<number>();
+
+    passLemonadeId(id:number) {
+        this.passLemonadeEvent.emit(id);
+    }
     
 }
