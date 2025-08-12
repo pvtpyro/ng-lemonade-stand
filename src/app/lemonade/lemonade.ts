@@ -4,6 +4,7 @@ import { Product } from './product/product';
 import { CommonModule } from '@angular/common';
 import { Glass } from "./glass/glass";
 import { Cart } from "../cart/cart";
+import { CartIcon } from './cart-icon/cart-icon';
 
 interface IProduct {
     name: string,
@@ -15,11 +16,13 @@ interface IProduct {
 
 @Component({
     selector: 'app-lemonade',
-    imports: [Card, Product, CommonModule, Glass, Cart],
+    imports: [Card, Product, CommonModule, Glass, Cart, CartIcon],
     templateUrl: './lemonade.html',
     styleUrl: './lemonade.scss'
 })
 export class Lemonade {
+
+    cartVisible: boolean = false;
 
     products: IProduct[] = [
         {
@@ -62,6 +65,10 @@ export class Lemonade {
                 product.amount > 0 ? product.amount -= 1 : product.amount;
             }
         })
+    }
+
+    toggleCart() {
+        this.cartVisible = !this.cartVisible;
     }
 
 }

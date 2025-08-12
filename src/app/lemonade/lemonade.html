@@ -13,4 +13,6 @@
             (decrementProductByName)="decrement(product.name)"></app-product>
     </app-card>
 </div>
-<app-cart></app-cart>
+<app-cart *ngIf="cartVisible"></app-cart>
+<app-cart-icon *ngIf="!cartVisible" (click)="toggleCart()"></app-cart-icon>
+<div class="backdrop" *ngIf="cartVisible" (click)="toggleCart()"></div>
