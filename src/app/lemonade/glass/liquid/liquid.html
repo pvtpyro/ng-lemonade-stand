@@ -1,0 +1,14 @@
+<div class="fill" [style]="{
+    transform: 'translate(0, ' + (percentLemonJuice < 100 ? percentLemonJuice : 105) + '%)'
+  }">
+
+    <app-wave class="wave back"></app-wave>
+    <app-wave class="wave front"></app-wave>
+
+</div>
+
+<div class="fillSugar" [style]="{ transform: 'translate(0, ' + percentSugar + '%)' }"></div>
+
+<div class="iceBox">
+    <img class="iceCube" *ngFor="let iceCube of [].constructor(numberOfIceCubes)" src="../../../../assets/ice.svg">
+</div>
