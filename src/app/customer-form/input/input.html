@@ -1,0 +1,15 @@
+<ng-container>
+    <label for="control">{{label}}:</label>
+    <input type="text" class="input-style field" [formControl]="control" name="control">
+    <ng-container *ngIf="control.touched && control.errors">
+        <div *ngIf="control.errors['required']" class="error">{{label}} is required</div>
+        <div *ngIf="control.errors['minlength']" class="error">
+            The {{label}} you provided is {{control.errors['minlength'].actualLength}} character(s) but it needs to be
+            {{control.errors['minlength'].requiredLength}} characters
+        </div>
+        <div *ngIf="control.errors['maxlength']" class="error">
+            The {{label}} you provided is {{control.errors['maxlength'].actualLength}} character(s) but it cannot exceed {{control.errors['maxlength'].requiredLength}}
+            characters
+        </div>
+    </ng-container>
+</ng-container>
