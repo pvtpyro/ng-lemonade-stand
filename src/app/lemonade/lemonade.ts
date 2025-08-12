@@ -12,10 +12,10 @@ interface IProduct {
 }
 
 @Component({
-  selector: 'app-lemonade',
-  imports: [Card, Product, CommonModule],
-  templateUrl: './lemonade.html',
-  styleUrl: './lemonade.scss'
+    selector: 'app-lemonade',
+    imports: [Card, Product, CommonModule],
+    templateUrl: './lemonade.html',
+    styleUrl: './lemonade.scss'
 })
 export class Lemonade {
 
@@ -40,14 +40,30 @@ export class Lemonade {
             amount: 0,
             max: 12,
             unit: "cubes"
-        },
-        {
-            name: "Strawberries",
-            price: 0.05,
-            amount: 0,
-            max: 12,
-            unit: "cubes"
         }
     ]
+
+    logProducts() {
+        console.log(this.products)
+    }
+
+    increment(productName: string) {
+        Lemonade.bind(this)
+        this.products.map(product => {
+            if (product.name === productName) {
+                product.amount < product.max ? product.amount += 1 : product.amount;
+            }
+        })
+
+    }
+
+    decrement(productName: string) {
+        Lemonade.bind(this)
+        this.products.map(product => {
+            if (product.name === productName) {
+                product.amount > 0 ? product.amount -= 1 : product.amount;
+            }
+        })
+    }
 
 }
