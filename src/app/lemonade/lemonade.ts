@@ -43,10 +43,6 @@ export class Lemonade {
         }
     ]
 
-    logProducts() {
-        console.log(this.products)
-    }
-
     increment(productName: string) {
         Lemonade.bind(this)
         this.products.map(product => {
