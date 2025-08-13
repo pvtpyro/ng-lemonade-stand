@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
+import ILemonadeStand from '../models/LemonadeStand';
 
 
 interface ILemonade {
@@ -14,10 +15,6 @@ interface ILemonade {
     price: number
 }
 
-interface LemonadeStand {
-    id: number,
-    name: string
-}
 
 
 @Component({
@@ -36,18 +33,18 @@ export class Cart {
 
     totalPrice: number = 0;
 
-    lemonadeStands: LemonadeStand[] = [];
+    lemonadeStands: ILemonadeStand[] = [];
 
     customerForm: FormGroup = new FormGroup({
-        selectedStand: new FormControl<LemonadeStand | undefined>(undefined, [Validators.required])
+        selectedStand: new FormControl<ILemonadeStand | undefined>(undefined, [Validators.required])
     })
 
     ngOnInit(): void {
         this.cartData.currentStandOptions.subscribe(
             (currentStandOption) => (this.lemonadeStands = currentStandOption)
         );
-        this.cartData.currentStand.subscribe((currentStand) =>
-            this.customerForm.setValue({ selectedStand: currentStand })
+        this.cartData.selectedStand.subscribe((selectedStand) =>
+            this.customerForm.setValue({ selectedStand: selectedStand })
         );
         this.lemonades.forEach((lemonade) => {
             this.totalPrice = this.totalPrice + lemonade.price;

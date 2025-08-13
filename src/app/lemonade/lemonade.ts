@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Card } from "./card/card";
 import { Product } from './product/product';
 import { CommonModule } from '@angular/common';
 import { Glass } from "./glass/glass";
 import { Cart } from "../cart/cart";
 import { CartIcon } from './cart-icon/cart-icon';
+import ILemonadeStand from '../models/LemonadeStand';
+import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 interface IProduct {
     name: string,
@@ -28,7 +31,7 @@ interface ILemonade {
     templateUrl: './lemonade.html',
     styleUrl: './lemonade.scss'
 })
-export class Lemonade {
+export class Lemonade implements OnInit {
 
     cartVisible: boolean = false;
 
@@ -62,6 +65,22 @@ export class Lemonade {
     currentLemonade: ILemonade = { id: 0, lemonJuice: 0, sugar: 0, iceCubes: 0, price: 0 };
 
     cartId = 0;
+
+    customerName: string = '';
+    customerPhoneNumber: string = '';
+    selectedStand: ILemonadeStand | undefined;
+
+    constructor(private cartData: CartService, private router: Router) {}
+
+    ngOnInit(): void {
+        this.cartData.customerName.subscribe(customerName => this.customerName = customerName)
+        this.cartData.customerPhoneNumber.subscribe(customerPhoneNumber => this.customerPhoneNumber = customerPhoneNumber)
+        this.cartData.selectedStand.subscribe(selectedStand => this.selectedStand = selectedStand)
+
+        if(!this.customerName || !this.customerPhoneNumber || !this.selectedStand) {
+            this.router.navigateByUrl('/')
+        }
+    }
 
     increment(productName: string) {
         Lemonade.bind(this)
