@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import ILemonadeStand from "./models/LemonadeStand";
-
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +23,7 @@ export class CartService {
     private totalPriceSource = new BehaviorSubject<number>(0);
     currentTotalPrice = this.totalPriceSource.asObservable();
 
+    constructor(private http: HttpClient) {}
 
     updateSelectedStand(stand: ILemonadeStand) {
         this.standSource.next(stand);
@@ -30,6 +31,10 @@ export class CartService {
 
     updateStandOptions(stands: ILemonadeStand[]) {
         this.standOptionsSource.next(stands);
+    }
+
+    loadLemonadeStands() {
+        return this.http.get<ILemonadeStand[]>('http://localhost:8080/lemonadestands')
     }
 
     updateCustomerName(name: string) {

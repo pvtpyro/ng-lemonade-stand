@@ -1,4 +1,7 @@
-<div class="container">
+@if (lemonadeStands.length === 0) {
+<div class="container">Loading...</div>
+} @else {
+<div #elseBlock class="container">
     <div>
         <h1>Hi there, before you can customize lemonades for your order we need some
             information about you</h1>
@@ -16,8 +19,10 @@
                     {{lemonadeStand.name}}
                 </option>
             </select>
-            <ng-container *ngIf="customerForm.controls['selectedStand'].touched && customerForm.controls['selectedStand'].errors">
-                <div *ngIf="customerForm.controls['selectedStand'].errors['required']" class="error">Lemonade Stand is required</div>
+            <ng-container
+                *ngIf="customerForm.controls['selectedStand'].touched && customerForm.controls['selectedStand'].errors">
+                <div *ngIf="customerForm.controls['selectedStand'].errors['required']" class="error">Lemonade Stand is
+                    required</div>
             </ng-container>
 
 
@@ -26,3 +31,4 @@
         </form>
     </div>
 </div>
+}
