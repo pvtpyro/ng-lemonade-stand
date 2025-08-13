@@ -1,5 +1,5 @@
 <div class="container center-text">
     <h1 class="blue total width">Total: {{totalPrice | currency }}</h1>
     <h2 class="green success width">Your order has been placed.</h2>
-    <button class="yellow-button font width">Place another order</button>
+    <button [routerLink]="['/']" class="yellow-button font width">Place another order</button>
 </div>

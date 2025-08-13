@@ -10,7 +10,7 @@
     </div>
 
     <form class="form-container eighty-percent" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-        <select name="lemonadeStand" class="input-style one-hundred-percent" formControlName="selectedStand">
+        <select name="lemonadeStand" class="input-style one-hundred-percent" formControlName="selectedStand" (change)="updateSelectedStand()">
             <option *ngFor="let lemonadeStand of lemonadeStands" [ngValue]="lemonadeStand">
                 {{ lemonadeStand.name }}
             </option>

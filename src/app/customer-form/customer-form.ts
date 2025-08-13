@@ -3,6 +3,8 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { globalModules } from '../global-modules';
 import { InputComponent } from "./input/input";
 import { PhoneFormControl } from './phone-form-control';
+import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 interface LemonadeStand {
     id: number,
@@ -17,7 +19,9 @@ interface LemonadeStand {
 })
 export class CustomerForm {
 
-    lemonadeStands: LemonadeStand[] =[
+    constructor(private cartData: CartService, private router: Router) { }
+
+    lemonadeStands: LemonadeStand[] = [
         { id: 1, name: 'Cooksys Lemonade Stand 1' },
         { id: 2, name: 'Cooksys Lemonade Stand 2' },
         { id: 3, name: 'Cooksys Lemonade Stand 3' },
@@ -35,6 +39,14 @@ export class CustomerForm {
         console.log(`Name: ${this.customerForm.controls['name'].value}`)
         console.log(`Phone Number: ${this.customerForm.controls['phoneNumber'].value}`)
         console.log(`Selected Lemonade Stand: ${JSON.stringify(this.customerForm.controls['selectedStand'].value)}`)
+
+        this.cartData.updateSelectedStand(this.customerForm.controls.selectedStand.value);
+        this.cartData.updateStandOptions(this.lemonadeStands);
+
+        console.log(this.cartData.currentStand);
+        console.log(this.cartData.currentStandOptions);
+
+        this.router.navigateByUrl('/lemonade')
     }
 
 }
