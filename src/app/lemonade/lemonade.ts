@@ -5,9 +5,11 @@ import { CommonModule } from '@angular/common';
 import { Glass } from "./glass/glass";
 import { Cart } from "../cart/cart";
 import { CartIcon } from './cart-icon/cart-icon';
-import ILemonadeStand from '../models/LemonadeStand';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
+
+import ILemonadeStand from '../models/LemonadeStand';
+import ILemonade from '../models/Lemonade';
 
 interface IProduct {
     name: string,
@@ -15,14 +17,6 @@ interface IProduct {
     max: number,
     price: number,
     unit: string
-}
-
-interface ILemonade {
-    id: number,
-    lemonJuice: number,
-    sugar: number,
-    iceCubes: number,
-    price: number
 }
 
 @Component({

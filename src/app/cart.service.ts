@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import ILemonadeStand from "./models/LemonadeStand";
 import { HttpClient } from "@angular/common/http";
+import IOrder from "./models/Order";
 
 @Injectable({
     providedIn: 'root'
@@ -47,5 +48,9 @@ export class CartService {
 
     updateTotalPrice(totalPrice: number) {
         this.totalPriceSource.next(totalPrice);
+    }
+
+    placeOrder(order: IOrder) {
+        return this.http.post<IOrder>('http://localhost:8080/orders', order)
     }
 }
